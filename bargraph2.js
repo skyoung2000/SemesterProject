@@ -116,11 +116,11 @@ var successFCN2 = function(mentalillnessgender,screen)
     
     var xscale2 = d3.scaleBand()
     .domain(["Male","Female"])
-    .range([0,graphDim.width])
+    .range([0,graphDim2.width])
     
     var yscale2 = d3.scaleLinear()
     .domain([0,40])
-    .range([graphDim.height,0])
+    .range([graphDim2.height,0])
     
     drawBars2(mentalillnessgender, target2, graphDim2, margins2, yscale2)
     drawAxes2(target2, graphDim2,margins2,xscale2,yscale2)
