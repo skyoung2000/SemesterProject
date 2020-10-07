@@ -112,7 +112,7 @@ var successFCN2 = function(mentalillnessgender,screen)
     .attr("height",svg2h)
     .append("g")
     .attr("id","bargraph2")
-    .attr("transform", "translate("+margins.left+","+margins.top+")")
+    .attr("transform", "translate("+margins2.left+","+margins2.top+")")
     
     var xscale2 = d3.scaleBand()
     .domain(["Male","Female"])
