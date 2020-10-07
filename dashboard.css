@@ -1,0 +1,28 @@
+body{
+    background-color: rgb(240, 232, 225)}
+}
+
+
+
+#tooltip.hidden
+{
+    display:none;
+}
+
+#tooltip
+{
+    position:absolute;
+    width:300px;
+    height:auto;
+    padding:10px;
+    background-color:white;
+    border-radius:10px;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
+    pointer-events:none;
+}
+
+.off,.fade
+{
+    opacity:.4;
+}
+
