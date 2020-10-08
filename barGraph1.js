@@ -26,9 +26,9 @@ var drawBars = function(suffSleepByGender, target, graphDim, margins, yscale)
     .attr("fill",function(d,i)
          {
             if(i==0)
-                {return "blue"}
+                {return "#000078"}
             if(i==1)
-                {return "magenta"}
+                {return "#c55186"}
         })
     .attr("class",function(d,i)
           {
@@ -133,9 +133,9 @@ var entries = legend.selectAll("g")
         .attr("fill", function(category)
               { 
             if(category == "Male")
-                {return "blue"}
+                {return "#000078"}
             if(category == "Female")
-                {return "magenta"}
+                {return "#c55186"}
         })
         .attr("transform",function(categories,index)
               {

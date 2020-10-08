@@ -1,5 +1,5 @@
-var svg2w = 600
-var svg2h = 600
+var svg2w = 500
+var svg2h = 400
 
 var drawBars2 = function(mentalillnessgender, target, graphDim, margins, yscale)
 {
@@ -16,7 +16,13 @@ var drawBars2 = function(mentalillnessgender, target, graphDim, margins, yscale)
     .attr("y",function(d){return yscale(mentalillnessgender[d].percentMentalIllness)})
     .attr("width",barw)
     .attr("height",function(d){return graphDim.height-yscale(mentalillnessgender[d].percentMentalIllness)})
-    .attr("fill","teal")
+    .attr("fill",function(d)
+          {
+            if(d==0)
+                {return "#000078"}
+            if(d==1)
+                {return "#c55186"}
+            })
     .attr("class", function(d)
           {
             if(d==0)
@@ -99,7 +105,7 @@ var successFCN2 = function(mentalillnessgender,screen)
     console.log("data",mentalillnessgender)
     screen = {width:1000, height:1000}
     
-    graphDim2 = {height: 300, width:400}
+    graphDim2 = {height: 250, width:400}
     margins2 = {left: 40, top:30}
     
    // var svg = d3.select("body")
@@ -119,7 +125,7 @@ var successFCN2 = function(mentalillnessgender,screen)
     .range([0,graphDim2.width])
     
     var yscale2 = d3.scaleLinear()
-    .domain([0,40])
+    .domain([0,35])
     .range([graphDim2.height,0])
     
     drawBars2(mentalillnessgender, target2, graphDim2, margins2, yscale2)

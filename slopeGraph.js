@@ -4,35 +4,7 @@ var makeTranslateString = function(x,y)
     return "translate("+x+","+y+")";
 }
 
-/*var lines = d3.select("svg")
-   .select("slopeLine")
-   .selectAll("g")
-   .data(CMDScores)
-   .enter()
-   .append("g")
-   .classed("line",true)
-   .on("mouseover",function(subject)
-        {   
-            if(! d3.select(this).classed("off"))
-            {
-            d3.selectAll(".line")
-            .classed("fade",true);
-            
-            d3.select(this)
-                .classed("fade",false)
-                .raise(); //move to top
-            }
-        })
-        .on("mouseout",function(subject)
-           {
-            if(! d3.select(this).classed("off"))
-            {
-            
-            d3.selectAll(".line")
-                .classed("fade",false);
-            }
-            
-        })*/
+
 //make slope graph
 var drawSlopeGraph = function(CMDScores,screen)
 {
@@ -50,8 +22,8 @@ var drawSlopeGraph = function(CMDScores,screen)
     
     //make vertical lines
     
-    var xshift = 200
-    var lengthOfLine=400
+    var xshift = 150
+    var lengthOfLine=300
     var gapBetween=100
    
     var yScale = d3.scaleLinear()
@@ -77,6 +49,26 @@ var drawSlopeGraph = function(CMDScores,screen)
         .attr("y1",graphLocY+lengthOfLine-yScale(beginning))
         .attr("x2",graphLocX+xshift)
         .attr("y2",graphLocY+lengthOfLine-yScale(end))
+        .on("mouseover",function()
+        {   
+            console.log(end-beginning)
+            var difference = (end-beginning).toFixed(1)
+            var xPos = d3.event.pageX;
+            var yPos = d3.event.pageY;
+      
+            d3.select("#tooltip")
+            .classed("hidden",false)
+            .style("top",yPos+"px")
+            .style("left",xPos+"px")
+    
+            d3.select("#tooltip")
+            .text(function(){return "Difference: "+difference})
+        })
+        .on("mouseout",function(subject)
+           {
+            d3.select("#tooltip")
+            .classed("hidden",true)
+    })
         
         d3.select("svg")
         .append("g")
@@ -97,35 +89,37 @@ var drawSlopeGraph = function(CMDScores,screen)
         .attr("x",graphLocX +xshift+20)
         .attr("y",graphLocY+lengthOfLine-yScale(end))
         .style("font-size", "15px")
+    
+   
     };
     
     
     //short duration boys
     var boysShort1 = Number(CMDScores[0].boysTime1)
     var boysShort2 = Number(CMDScores[0].boysTime2)
-    slopeLines(graphLocX,graphLocY, xshift, lengthOfLine, "blue", boysShort1,boysShort2);
+    slopeLines(graphLocX,graphLocY, xshift, lengthOfLine, "#10559A", boysShort1,boysShort2);
     
     //adequate duration boys
     var boysAdequate1 =Number(CMDScores[1].boysTime1)
     var boysAdequate2 =Number(CMDScores[1].boysTime2)
-    slopeLines(graphLocX,graphLocY, xshift, lengthOfLine, "red", boysAdequate1,boysAdequate2)
+    slopeLines(graphLocX,graphLocY, xshift, lengthOfLine, "#DB4C77", boysAdequate1,boysAdequate2)
     
     //long duration boys
     var boysLong1 =Number(CMDScores[2].boysTime1)
     var boysLong2 =Number(CMDScores[2].boysTime2)
-    slopeLines(graphLocX,graphLocY, xshift, lengthOfLine, "green", boysLong1,boysLong2)
+    slopeLines(graphLocX,graphLocY, xshift, lengthOfLine, "#A155B9", boysLong1,boysLong2)
     
     var girlsShort1 = Number(CMDScores[0].girlsTime1)
     var girlsShort2 = Number(CMDScores[0].girlsTime2)
-    slopeLines(graphLocX+xshift+gapBetween,graphLocY, xshift, lengthOfLine, "blue", girlsShort1,girlsShort2)
+    slopeLines(graphLocX+xshift+gapBetween,graphLocY, xshift, lengthOfLine, "#10559A", girlsShort1,girlsShort2)
     
     var girlsAdequate1 = Number(CMDScores[1].girlsTime1)
     var girlsAdequate2 = Number(CMDScores[1].girlsTime2)
-    slopeLines(graphLocX+xshift+gapBetween,graphLocY, xshift, lengthOfLine, "red", girlsAdequate1,girlsAdequate2)
+    slopeLines(graphLocX+xshift+gapBetween,graphLocY, xshift, lengthOfLine, "#DB4C77", girlsAdequate1,girlsAdequate2)
     
     var girlsLong1 = Number(CMDScores[2].girlsTime1)
     var girlsLong2 = Number(CMDScores[2].girlsTime2)
-    slopeLines(graphLocX+xshift+gapBetween,graphLocY, xshift, lengthOfLine, "green", girlsLong1,girlsLong2)
+    slopeLines(graphLocX+xshift+gapBetween,graphLocY, xshift, lengthOfLine, "#A155B9", girlsLong1,girlsLong2)
     
     //make vertical lines
     var vertLine = function(graphLocX,graphLocY,lengthOfLine, xshift)
@@ -141,8 +135,8 @@ var drawSlopeGraph = function(CMDScores,screen)
     .attr("x2",graphLocX+xshift)
     .attr("y2",graphLocY+lengthOfLine)
     }
-    var xshift = 200
-    var lengthOfLine=400
+    var xshift = 150
+    var lengthOfLine=300
     var gapBetween=100
     vertLine(graphLocX,graphLocY,lengthOfLine, 0)
     vertLine(graphLocX,graphLocY, lengthOfLine, xshift)
@@ -173,7 +167,11 @@ var drawSlopeGraph = function(CMDScores,screen)
 var legend = d3.select("svg")
     .append("g")
     .classed("legend",true)
-   .attr("transform", makeTranslateString(graphLocX +xshift,graphLocY+lengthOfLine+50) )
+   .attr("transform", makeTranslateString(graphLocX +1.1*xshift+gapBetween,graphLocY+50) )
+
+    legend
+    .append("text")
+    .text("Amount of Sleep:")
 
 var entries = legend.selectAll("g")
         .data(categories.map(function(category)
@@ -186,15 +184,16 @@ var entries = legend.selectAll("g")
         .attr("fill", function(category)
               { 
             if(category == "short")
-                {return "blue"}
+                {return "#10559A"}
             if(category == "adequate")
-                {return "red"}
+                {return "#DB4C77"}
             if(category == "long")
-                {return "green"}
+                {return "#A155B9"}
         })
         .attr("transform",function(categories,index)
               {
-                return "translate(0,"+index*20+")";
+                var y = index*20+5
+                return "translate(0,"+ y+")";
               })
               
         entries.append("rect")
@@ -215,6 +214,14 @@ var drawTitle = function(graphDim,graphLocX,graphLocY,lengthOfLine)
    
     title.append("text")
     .text("The Impact of Duration of Sleep on Common Mental Disorders")
+    .classed("title", true)
+    .attr("text-anchor","middle")
+    .attr("x",graphLocX +xshift+gapBetween/2)
+    .attr("y",graphLocY-40)
+    .style("font-weight", "bold")
+    .style("font-size", "20px")
+    title.append("text")
+    .text("(CMDs) in Children Over a 9 month Period, by Gender")
     .classed("title", true)
     .attr("text-anchor","middle")
     .attr("x",graphLocX +xshift+gapBetween/2)
@@ -240,13 +247,13 @@ drawXLabels(graphLocX,graphLocY,xshift,"Boys",graphLocX+.5*xshift,graphLocY+leng
     
 drawXLabels(graphLocX,graphLocY,xshift,"Girls",graphLocX+1.5*xshift+gapBetween,graphLocY+lengthOfLine +40)
     
-drawXLabels(graphLocX,graphLocY,xshift,"Time 1",graphLocX,graphLocY+lengthOfLine +20)
+drawXLabels(graphLocX,graphLocY,xshift,"Month 0",graphLocX,graphLocY+lengthOfLine +20)
     
-drawXLabels(graphLocX,graphLocY,xshift,"Time 2",graphLocX+xshift,graphLocY+lengthOfLine +20)
+drawXLabels(graphLocX,graphLocY,xshift,"Month 9",graphLocX+xshift,graphLocY+lengthOfLine +20)
     
-drawXLabels(graphLocX,graphLocY,xshift,"Time 1",graphLocX+xshift+gapBetween,graphLocY+lengthOfLine +20)
+drawXLabels(graphLocX,graphLocY,xshift,"Month 0",graphLocX+xshift+gapBetween,graphLocY+lengthOfLine +20)
     
-drawXLabels(graphLocX,graphLocY,xshift,"Time 2",graphLocX+2*xshift+gapBetween,graphLocY+lengthOfLine +20)
+drawXLabels(graphLocX,graphLocY,xshift,"Month 9",graphLocX+2*xshift+gapBetween,graphLocY+lengthOfLine +20)
 
 
  var yLabel = d3.select("svg")
@@ -256,32 +263,6 @@ drawXLabels(graphLocX,graphLocY,xshift,"Time 2",graphLocX+2*xshift+gapBetween,gr
     .classed("label","true")
     .attr("text-anchor","middle")
     
-    
-//need to fix
-  /* d3.select("svg")
-   .selectAll(".slopeLine")
-   .on("mouseover",function(subject,CMDScores)
-        {   
-            console.log("subject",subject)
-       
-            var xPos = d3.event.pageX;
-            var yPos = d3.event.pageY;
-      
-            d3.select("#tooltip")
-            .classed("hidden",false)
-            .style("top",yPos+"px")
-            .style("left",xPos+"px")
-    
-            d3.select("#tooltip")
-            .text("hi")
-        })
-        .on("mouseout",function(subject)
-           {
-            d3.select("#tooltip")
-            .classed("hidden",true)
-        
-})*/
-
 }
 
 
@@ -292,29 +273,7 @@ var successFCN = function(CMDScores,screen)
     console.log("CMD Scores",CMDScores);
     drawSlopeGraph(CMDScores,screen)
     
-    //need to fix
-   d3.select("svg")
-   .selectAll(".slopeLine")
-   .on("mouseover",function(subject,CMDScores)
-        {   
-            console.log("subject",subject)
-       
-            var xPos = d3.event.pageX;
-            var yPos = d3.event.pageY;
-      
-            d3.select("#tooltip")
-            .classed("hidden",false)
-            .style("top",yPos+"px")
-            .style("left",xPos+"px")
-    
-            d3.select("#tooltip")
-            .text("hi")
-        })
-        .on("mouseout",function(subject)
-           {
-            d3.select("#tooltip")
-            .classed("hidden",true)
-})
+   
 }
 
 var failFCN = function(error)

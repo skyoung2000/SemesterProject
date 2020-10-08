@@ -1,7 +1,25 @@
-body{
-    background-color: rgb(240, 232, 225)
+body
+{
+    background-color:  rgb(240, 232, 225);
+    font-family: Arial
 }
 
+h1
+{
+    color: #000078;
+    font-size: 40px;
+}
+
+h2
+{
+    color: #c55186;
+    font-size: 30px;
+}
+
+p
+{
+    font-size: 20px;
+}
 
 
 #tooltip.hidden
@@ -12,10 +30,11 @@ body{
 #tooltip
 {
     position:absolute;
-    width:300px;
+    width:100px;
     height:auto;
     padding:10px;
-    background-color:white;
+    color:rgb(240, 232, 225);
+    background-color:#AA0078;
     border-radius:10px;
     box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
     pointer-events:none;
@@ -25,4 +44,12 @@ body{
 {
     opacity:.4;
 }
+
+.legend
+{
+    border-style: solid;
+    border-color: black;
+    #f0ead6
+}
+
 
