@@ -7,25 +7,37 @@
 <body>
     <h1> Call to Action</h1>
     <a href = "index.html">index</a>
-    <h2>Lack of Sleep is Associated with Mental Health Issues</h2>
+    <h2>Duration of Sleep is Linked to Mental Health in Different Ways for Boys and Girls</h2>
     <p>It is no question that sleep affects people's daily lives. Getting little sleep makes a person feel fatigued and less energetic throughout the day. </p>
     <p> Not getting the right amount of sleep affects not only your physical health, but also your mental health and abilities. Because of this, <strong>it is important that you get enough sleep each night to protect your overall well-being.</strong> </p>
-    <p> These studies have shown that typically, females get less sleep on average than males and that females typically have a higher rate of having mental health issues than males.</p>
+    <p> This study that was published by BMC Public Health, where common mental disorders (CMDs) using the General Health Questionaire at the beginning of a 9-month period and a follow-up.</p>
     
     
-    <svg id="graph1">
+    <!--<svg id="graph1">
     
     </svg>
     
     <svg id="graph2">
     
+    </svg>-->
+     <span>
+    <svg id="slopeGraph" id="ctaslope" width = "600" height = "450">
     </svg>
+    </span>
     
-    <p>This information suggests that there is a <strong>link between amount of sleep and mental health,</strong> and that each of these issues affects adult women at a higher rate than adult men.</p>
+   <div class="hidden" id="tooltip">
+            <p><strong></strong></p>
+    </div>
+    
+    <p class = "byGraph">This information suggests that there is a <strong>link between amount of sleep and mental health,</strong> as there was only a minor change in CMD scores with adequate amounts of sleep, and great changes with short or long sleep for both genders. </p>
+    <p class = "byGraph2">Also, note that the typical CMD scores for girls are typically lower than those for boys, showing that <strong>boys may have higher tendencies to have common mental disorders </strong>(though there is evidence that the opposite is true for adults).
+    </p>
+    <p class = byGraph3>
+    Using this information, we can conclude that getting a different amount of sleep than what is recommended can lead to greater changes in mental health scores than getting an adequate amount of sleep.
+    </p>
     
     <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script src = "barGraph1.js"></script>
-    <script src = "bargraph2.js"></script>
+    <script src = "slopeGraph.js"></script>
     
     </body>
 </html>

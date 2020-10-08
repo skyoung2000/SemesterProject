@@ -9,7 +9,7 @@ var makeTranslateString = function(x,y)
 var drawSlopeGraph = function(CMDScores,screen)
 {
     var screen = {width:600, height:600}
-    var graph = d3.select("svg")
+    var graph = d3.select("#slopeGraph")
     .append("g")
     .attr("width",screen.width)
     .attr("height",screen.height)
@@ -70,7 +70,7 @@ var drawSlopeGraph = function(CMDScores,screen)
             .classed("hidden",true)
     })
         
-        d3.select("svg")
+        d3.select("#slopeGraph")
         .append("g")
         .append("text")
         .text(beginning)
@@ -80,7 +80,7 @@ var drawSlopeGraph = function(CMDScores,screen)
         .attr("y",graphLocY+lengthOfLine-yScale(beginning))
         .style("font-size", "15px")
         
-        d3.select("svg")
+        d3.select("#slopeGraph")
         .append("g")
         .append("text")
         .text(end)
@@ -124,7 +124,7 @@ var drawSlopeGraph = function(CMDScores,screen)
     //make vertical lines
     var vertLine = function(graphLocX,graphLocY,lengthOfLine, xshift)
     {
-    d3.select("svg")
+    d3.select("#slopeGraph")
     .append("g")
     .attr("class", "vertLine")
     .append("line")
@@ -164,7 +164,7 @@ var drawSlopeGraph = function(CMDScores,screen)
        }
     ]
 
-var legend = d3.select("svg")
+var legend = d3.select("#slopeGraph")
     .append("g")
     .classed("legend",true)
    .attr("transform", makeTranslateString(graphLocX +1.1*xshift+gapBetween,graphLocY+50) )
@@ -210,7 +210,7 @@ drawLegend(screen)
    
 var drawTitle = function(graphDim,graphLocX,graphLocY,lengthOfLine)
 {
-    var title = d3.select("svg")
+    var title = d3.select("#slopeGraph")
    
     title.append("text")
     .text("The Impact of Duration of Sleep on Common Mental Disorders")
@@ -234,7 +234,7 @@ var drawTitle = function(graphDim,graphLocX,graphLocY,lengthOfLine)
 drawTitle(screen,graphLocX,graphLocY,lengthOfLine)
  
 var drawXLabels = function(graphLocX,graphLocY,xshift,text,x,y)    
-    {var label = d3.select("svg")
+    {var label = d3.select("#slopeGraph")
     
     label.append("text")
     .text(text)
@@ -256,7 +256,7 @@ drawXLabels(graphLocX,graphLocY,xshift,"Month 0",graphLocX+xshift+gapBetween,gra
 drawXLabels(graphLocX,graphLocY,xshift,"Month 9",graphLocX+2*xshift+gapBetween,graphLocY+lengthOfLine +20)
 
 
- var yLabel = d3.select("svg")
+ var yLabel = d3.select("#slopeGraph")
     yLabel.append("text")
     .attr("transform",makeTranslateString(graphLocX-50, graphLocY+.5*lengthOfLine ) + " rotate(-90)")
     .text("CMD Score")

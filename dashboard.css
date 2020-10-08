@@ -52,4 +52,32 @@ p
     #f0ead6
 }
 
+#slopeGraph
+{
+    border-style: solid;
+    border: 1px;
+    border-color:black;
+}
+
+.byGraph
+{
+    position:absolute;
+    top: 370px;
+    left:660px;
+    width:600px
+}
+.byGraph2
+{
+    position:absolute;
+    top: 500px;
+    left:660px;
+    width:600px
+}
+.byGraph3
+{
+    position:absolute;
+    top: 630px;
+    left:660px;
+    width:600px
+}
 
